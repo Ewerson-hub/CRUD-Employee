@@ -1,0 +1,44 @@
+form{
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+    width: 50%;
+    height: 200px;
+}
+
+    
+.buttons > button {
+    width: 150px;
+}
+button[type="submit"]{
+    background-color: #4CAF50;;
+    color: #F5F5F5;
+    border: none;
+    border-radius: 5px;
+
+    transition: .2s ease-in; 
+}
+button[type="submit"]:hover{
+    margin-right: 15px;
+    transform: scale(1.2);
+}
+
+button[type="button"]:hover{
+    margin-left: 15px;
+    transform: scale(1.2);
+}
+
+button[type="button"]{
+    background-color: #F44336;
+    border: none;
+    border-radius: 5px;
+
+    transition: .2s ease-in; 
+}
+button[type="button"] > a {
+    color: #F5F5F5;
+}

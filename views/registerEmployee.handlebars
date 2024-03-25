@@ -1,0 +1,21 @@
+<section>
+    <h1>Register a new Employee</h1>
+
+    <form action="/registerEmployee" method="post">
+        <label for="name">
+            Name :  <input type="text" name="name" id="name" placeholder="Name of employee" required>
+        </label>
+
+        <label for="sector">
+            Sector : 
+            <input type="radio" name="sector" id="adm" value="adm" required> ADM
+            <input type="radio" name="sector" id="mechanics" value="mechanics" required> Mechanics
+            <input type="radio" name="sector" id="sales" value="sales" required>Sales
+        </label>
+
+        <div class="buttons">
+                <button type="submit">Save</button>
+                <button type="button"><a href="/">Cancel</a></button>
+        </div>
+    </form>
+</section>

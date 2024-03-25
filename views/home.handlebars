@@ -1,0 +1,31 @@
+<section id="home-section">
+    <h1 id="home-h1">Employee Information</h1>
+    <p>
+        <a id="home-a"href="/registerEmployee">Register a new Employee</a>
+    </p>
+
+    <table id="home-table" border = "1px">
+        <tr>
+            <th>Name</th>
+            <th>Sector</th>
+            <th>Update Info</th>
+            <th>Delete Employee</th>
+        </tr>
+        {{#each employee}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.sector}}</td>
+                <td class="td-icons">
+                    <a href="/updateEmployee/{{this.id}}">
+                        <img class="icon" src="/imgs/update-alt-svgrepo-com.png" alt="Update Icon">
+                    </a>
+                </td>
+                <td class="td-icons">
+                    <a href="/deleteEmployeePage/{{this.id}}">
+                        <img class="icon" src="/imgs/trash-svgrepo-com.png" alt="Tash Icon">
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</section>

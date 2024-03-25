@@ -1,0 +1,22 @@
+<section>
+    <h1>Update Employee</h1>
+    <form action="/updateEmployee" method="post">
+
+        <input type="hidden" name="id" id="id" value="{{employee.id}}">
+        <label for="name">
+            Name: <input type="text" name="name" id="name" value={{employee.name}} placeholder="Name of employee">
+        </label>
+
+        <label for="sector">
+            Sector : 
+            <input type="radio" name="sector" id="adm" value="adm" {{{ifeq employee.sector 'adm' }}}> ADM
+            <input type="radio" name="sector" id="mechanics" value="mechanics" {{{ifeq employee.sector 'mechanics'}}}> Mechanics
+            <input type="radio" name="sector" id="sales" value="sales" {{{ifeq employee.sector 'sales' }}}>Sales
+        </label>
+
+       <div class="buttons">
+                <button type="submit">Save</button>
+                <button type="button"><a href="/">Cancel</a></button>
+        </div>
+    </form>
+</section>
