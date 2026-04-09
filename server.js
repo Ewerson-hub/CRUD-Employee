@@ -24,6 +24,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //configure routes
 app.use('/', routes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('server is running in port : ', PORT)
 })
