@@ -1,9 +1,9 @@
 const pool = require('./conection');
 
-async function executeQuery(sql_statement, awaitReturn=true) {
+async function executeQuery(sql_statement, variables) {
 
     try {
-        const [results] = await pool.query(sql_statement);
+        const [results] = await pool.execute(sql_statement, variables)
         return results
 
     }catch (error) {
