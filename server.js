@@ -2,6 +2,7 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const routes = require("./scripts/routes/routes");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser")
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,9 @@ app.set('views', './views');
   
 //configure express for suport css
 app.use(express.static('public'));
+
+//configure app to recive cookies from requisition
+app.use(cookieParser());
 
 //configure express for receive json on requisitions
 app.use(bodyParser.urlencoded({extended: true}));
