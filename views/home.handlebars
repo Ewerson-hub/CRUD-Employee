@@ -3,6 +3,10 @@
     <p>
         <a id="home-a"href="/registerEmployee" {{#if (check @root.is_admin)}} class="disable-link"{{/if}} >Register a new Employee</a>
     </p>
+    <span id="btns-show-all">
+        <a id="btn-show-users" href="/showUsers">Show Users</a>
+        <a id="btn-logout" href="/logout">Logout</a>
+    </span>
     <div>
         <table id="home-table" border = "1px">
         <tr>
@@ -28,7 +32,5 @@
             </tr>
         {{/each}}
     </table>
-
-    </div>
-    
+    </div>  
 </section>
