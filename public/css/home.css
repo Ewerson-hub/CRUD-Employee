@@ -11,11 +11,10 @@
     overflow-y: scroll;
     max-height: 100%;
 }
-#home-table {
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-
 }
 th, td {
     border: 1px solid #ddd; /* Gray Border */
@@ -25,22 +24,12 @@ th, td {
 th {
     background-color: #f2f2f2; /* Light Gray */
 }
-table{
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
-a.disable-link{
-    pointer-events: none; 
+.disable-link > td > a {
     cursor: default;       
     color: gray;           
-    text-decoration: none
-}
-.disable-link > td > a {
-    pointer-events: none; 
-    cursor: default;       
-    text-decoration: none
+    text-decoration: none;
+    pointer-events: none;        
 }
 .disable-link > td > a > svg {
     path, polyline{
@@ -67,6 +56,9 @@ a.disable-link{
 #btn-show-users{
     background-color:#2196F3 ;
     color: #F5F5F5;
+}
+#btn-show-users.disable-link {
+     background-color: gray ; 
 }
 
 #btns-show-all{
