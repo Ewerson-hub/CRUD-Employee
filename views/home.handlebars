@@ -1,14 +1,14 @@
 <section id="home-section">
     <h1 id="home-h1">Crud Employees</h1>
     <p>
-        <a id="home-a"href="/registerEmployee" {{#if (check @root.is_admin)}} class="disable-link"{{/if}} >Register a new Employee</a>
+        <a id="home-a"href="/registerEmployee" {{#if (not @root.is_admin)}} hidden {{/if}} >Register a new Employee</a>
     </p>
     <span id="btns-show-all">
-        <a id="btn-show-users" href="/showUsers">Show Users</a>
+        <a id="btn-show-users" href="/showUsers" {{#if (not @root.is_admin)}} hidden {{/if}}>Show Users</a>
         <a id="btn-logout" href="/logout">Logout</a>
     </span>
     <div>
-        <table id="home-table" border = "1px">
+        <table class="table" border = "1px">
         <tr>
             <th>Name</th>
             <th>Sector</th>
@@ -16,7 +16,7 @@
             <th>Delete Employee</th>
         </tr>
         {{#each employee}}
-            <tr {{#if (check @root.is_admin)}} class="disable-link"{{/if}} >
+            <tr {{#if (not @root.is_admin)}} class="disable-link"{{/if}} >
                 <td>{{this.name}}</td>
                 <td>{{this.sector}}</td>
                 <td class="td-icons" >
