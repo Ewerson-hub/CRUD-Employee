@@ -2,8 +2,28 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const {selectAll, insertNewEmployee,selectById, updateEmployee, deleteEmployee} = require('../controls/employeeOperations');
-const {createUser, verifyUserAcess, verifyUserAutentication} = require('../controls/usersOperations');
+const {createUser, verifyUserAcess, verifyUserAutentication, getAllUsers, deleteUser, updateRole} = require('../controls/usersOperations');
 
+
+router.get('/showUsers', async (req,res) => {
+    const usersData = await getAllUsers();
+
+    res.render('showUsers', {'users': usersData})
+})
+router.get('/deleteUser/:id', async (req, res) =>{ 
+    await deleteUser(req.params.id)
+    res.redirect('/showUsers')
+})
+
+router.get('/updateRole/:id/:role', async (req, res) => {
+    const role = (req.params.role == 0)? 1 : 0;
+    await updateRole(req.params.id, role);
+    res.redirect('/showUsers')
+})
+router.get('/logout', (req, res) => {
+    res.clearCookie('token')
+    res.redirect('/')
+})
 router.get('/signUpScreen', (req, res) => {
     res.render('signUpScreen');
 })
