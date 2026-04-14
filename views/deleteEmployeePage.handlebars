@@ -1,6 +1,6 @@
 <section>
     <h1>Do you really want to delete the values ​​below?</h1>
-    <form action="/delete" method="post">
+    <form action="/employee/delete" method="post">
         <input type="hidden" name="id" id="id" value="{{employee.id}}">
         <label for="name">
             Name: <input type="text" name="name" id="name" value="{{employee.name}}" disabled>
@@ -13,7 +13,7 @@
        
         <div class="buttons">
                 <button type="submit">Yes, I Want</button>
-                <button type="button"><a href="/showAll">Cancel</a></button>
+                <button type="button"><a href="/employee/show">Cancel</a></button>
         </div>
     </form>
 </section>
