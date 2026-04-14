@@ -9,9 +9,9 @@
 
         <label for="sector">
             Sector : 
-            <input type="radio" name="sector" id="adm" value="adm" {{{ifeq employee.sector 'adm' }}}> ADM
-            <input type="radio" name="sector" id="mechanics" value="mechanics" {{{ifeq employee.sector 'mechanics'}}}> Mechanics
-            <input type="radio" name="sector" id="sales" value="sales" {{{ifeq employee.sector 'sales' }}}>Sales
+            <input type="radio" name="sector" id="adm" value="adm" {{#if (ifeq employee.sector 'adm')}} checked {{/if}}> ADM
+            <input type="radio" name="sector" id="mechanics" value="mechanics" {{#if (ifeq employee.sector 'mechanics')}} checked {{/if}}> Mechanics
+            <input type="radio" name="sector" id="sales" value="sales" {{#if (ifeq employee.sector 'sales')}} checked {{/if}}>Sales
         </label>
 
        <div class="buttons">

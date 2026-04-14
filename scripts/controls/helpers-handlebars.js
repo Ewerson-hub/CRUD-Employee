@@ -1,6 +1,7 @@
 module.exports = {
     ifeq: function(a, b){
-        return (a==b)? 'checked': ""
+        console.log(a, ' e ', b)
+        return (a==b)? true: false;
     },
     not: function(role){
         return !role

@@ -9,7 +9,7 @@
             <th>Delete User</th>
         </tr>
         {{#each users}}
-            <tr id={{this.id}}>
+            <tr id={{this.id}} {{#if (ifeq this.login @root.login)}} class="disable-link" {{/if}}>
                 <td>{{this.login}}</td>
                 <td>{{{formatRole this.is_admin}}}</td>
                 <td class="td-icons" >

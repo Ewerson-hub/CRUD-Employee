@@ -93,6 +93,7 @@ const verifyUserAuthentication = () => {
             if(!verifiedToken){ res.status(403).render('errorPage') }
 
             if(verifiedToken){
+                res.locals.login = verifiedToken.login;
                 res.locals.is_admin = Boolean(verifiedToken.is_admin);
                 next();
             }      
