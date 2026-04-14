@@ -41,8 +41,8 @@ th {
         fill: gray !important;
     }
 }
-.disable-link > td:nth-last-child(-n+2){
-    background: rgba(0, 0, 0, 0.035);
+.disable-link{
+    background: rgba(0, 0, 0, 0.06);
 }
 #btn-logout, #btn-show-users{
     border: none;
