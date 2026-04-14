@@ -1,0 +1,17 @@
+#show-users:last-child{
+    overflow-y: scroll;
+    max-height: 100%;
+}
+#promove{
+    color: #F5F5F5;
+    background-color: green;
+}
+#demove{
+    color: #F5F5F5;
+    background-color: #F44336;
+}
+.btn{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
