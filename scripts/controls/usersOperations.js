@@ -80,7 +80,7 @@ const updateRole = async (id, role) => {
     }
 }
 
-const verifyUserAutentication = () => { 
+const verifyUserAuthentication = () => { 
     return (req, res, next) => {
         try{
             const token = req.cookies.token;
@@ -104,4 +104,4 @@ const verifyUserAutentication = () => {
         
     } 
 }
-module.exports = {createUser, verifyUserAcess, getAllUsers, verifyUserAutentication, deleteUser, updateRole}
+module.exports = {createUser, verifyUserAcess, getAllUsers, verifyUserAuthentication, deleteUser, updateRole}
