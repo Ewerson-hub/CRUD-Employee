@@ -2,6 +2,7 @@
     color: #333;
 }
 #home-section{
+    position: relative;
     display: flex;
     flex-direction: column;
     max-height: 100%;
@@ -54,5 +55,21 @@ a.disable-link{
 .disable-link > td:nth-last-child(-n+2){
     background: rgba(0, 0, 0, 0.035);
 }
+#btn-logout, #btn-show-users{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#btn-logout{
+    background-color: #F44336;
+    color: #F5F5F5;
+}
+#btn-show-users{
+    background-color:#2196F3 ;
+    color: #F5F5F5;
+}
 
-
+#btns-show-all{
+    position: absolute;
+    right: 0;
+}
