@@ -7,6 +7,7 @@ const employeeRoutes = require("./scripts/routes/employee.routes");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
+const {verifyUserAuthentication} = require('./scripts/controls/usersOperations');
 
 const app = express();
 const PORT = 3000;
@@ -32,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //configure routes
 app.use('/', mainRoutes);
 app.use('/user', userRoutes);
-app.use('/employee', employeeRoutes);
+app.use('/employee', verifyUserAuthentication(), employeeRoutes);
 
 app.listen(PORT, () => {
     console.log('server is running in port : ', PORT)

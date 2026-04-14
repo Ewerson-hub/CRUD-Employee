@@ -1,12 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const {createUser, verifyUserAcess, verifyUserAutentication, getAllUsers, deleteUser, updateRole} = require('../controls/usersOperations');
+const {createUser, verifyUserAcess, verifyUserAuthentication, getAllUsers, deleteUser, updateRole} = require('../controls/usersOperations');
 
-router.get('/show', async (req,res) => {
+router.get('/show', verifyUserAuthentication(), async (req,res) => {
     const usersData = await getAllUsers();
     res.render('showUsers', {'users': usersData})
 })
+
+router.get('/delete/:id', verifyUserAuthentication(), async (req, res) =>{ 
+    await deleteUser(req.params.id)
+    res.redirect('/user/show')
+})
+
+router.get('/updateRole/:id/:role', verifyUserAuthentication(), async (req, res) => {
+    const role = (req.params.role == 0)? 1 : 0;
+    await updateRole(req.params.id, role);
+    res.redirect('/user/show')
+})
+
+// ======== LOGIN
 router.post('/create', async (req, res) => {
     try{
         const userCreated = await createUser(req.body.login, req.body.password)
@@ -17,19 +30,7 @@ router.post('/create', async (req, res) => {
     } catch (error){
         console.log('Error on create user => ', error);
     } 
-})
-router.get('/delete/:id', async (req, res) =>{ 
-    await deleteUser(req.params.id)
-    res.redirect('/user/show')
-})
-
-router.get('/updateRole/:id/:role', async (req, res) => {
-    const role = (req.params.role == 0)? 1 : 0;
-    await updateRole(req.params.id, role);
-    res.redirect('/user/show')
-})
-
-// ======== LOGIN 
+}) 
 router.get('/signUp', (req, res) => {
     res.render('signUpScreen');
 })

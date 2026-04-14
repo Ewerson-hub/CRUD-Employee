@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {selectAll, insertNewEmployee,selectById, updateEmployee, deleteEmployee} = require('../controls/employeeOperations');
-const {verifyUserAutentication} = require('../controls/usersOperations');
 
-router.get('/show', verifyUserAutentication(), async (req, res) => {
+router.get('/show', async (req, res) => {
     const data = await selectAll();
     res.render('home', {'employee' : data});
 })
