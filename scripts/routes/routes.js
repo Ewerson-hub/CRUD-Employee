@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const {selectAll, insertNewEmployee,selectById, updateEmployee, deleteEmployee} = require('../controls/employeeOperations');
-const {createUser, verifyUserAcess} = require('../controls/usersOperations');
+const {createUser, verifyUserAcess, verifyUserAutentication} = require('../controls/usersOperations');
 
 router.get('/signUpScreen', (req, res) => {
     res.render('signUpScreen');
@@ -26,18 +27,22 @@ router.post('/createUser', async (req, res) => {
     
 })
 
-router.post('/signInUser', async (req, res) => {
+router.post('/signInUser', async (req, res, next) => {
+
     let userVerification = await verifyUserAcess(req.body.login, req.body.password)
 
-    if(userVerification){
-        //criar os tokens e a sessao
-        res.redirect('/showAll')
+    if(userVerification.verified){
+
+        const token = jwt.sign(userVerification.userData[0], process.env.JWT_PRIVATE_KEY, {expiresIn: "15m"})
+        
+        res.cookie('token', token, {httpOnly:true})
+        res.redirect('showAll')
     }else{
         res.render('errorPage')
     }
 })
 
-router.get('/showAll', async (req, res) => {
+router.get('/showAll', verifyUserAutentication(), async (req, res) => {
     const data = await selectAll();
     res.render('home', {'employee' : data});
 })
