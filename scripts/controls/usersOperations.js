@@ -29,7 +29,7 @@ const createUser = async (login, pass) => {
 //Buscar uma forma de separar o envio dos dados do usuario e a verificação de acesso sem afetar o consumo de memoria/varias chamadas de funções
 const verifyUserAcess = async (login, pass) => {
     try {
-        const userData = await getUserData(login)
+        const userData = await getUserData(login, true)
 
         if(userData.length == 0) return false
 
@@ -43,17 +43,41 @@ const verifyUserAcess = async (login, pass) => {
     }
 }
 
-const getUserData = async(login) => {
+const getUserData = async(login, passRequired=false) => {
     try{
-
-        const userData = await executeQuery("SELECT * FROM users WHERE login = ?", [login])
-
-        return userData
-
+        if(passRequired){
+            return await executeQuery("SELECT * FROM users WHERE login = ?", [login])
+        }else{
+            return await executeQuery("SELECT login FROM users WHERE login = ?", [login])
+        }
     }catch(error){
-
+        console.log(error)
     }
 
+}
+const getAllUsers = async () => {
+    try{
+        return await executeQuery("SELECT id,login, is_admin FROM users WHERE login != 'root'")
+    }catch(error){
+        console.log(error)
+    }
+}
+
+const deleteUser = async (id) => {
+    try{
+        await executeQuery("DELETE FROM users WHERE id = ?", [id])
+        console.log('User has been deleted !')
+    }catch(error){
+        console.log('Error on deleting user ',error)
+    }
+}
+const updateRole = async (id, role) => {
+    try{
+        await executeQuery("UPDATE users SET is_admin = ? WHERE id = ? ", [role, id])
+        console.log('User Role has been Updated !')
+    }catch(error){
+        console.log('Error on updating user ',error)
+    }
 }
 
 const verifyUserAutentication = () => { 
@@ -80,4 +104,4 @@ const verifyUserAutentication = () => {
         
     } 
 }
-module.exports = {createUser, verifyUserAcess, getUserData, verifyUserAutentication}
+module.exports = {createUser, verifyUserAcess, getAllUsers, verifyUserAutentication, deleteUser, updateRole}
