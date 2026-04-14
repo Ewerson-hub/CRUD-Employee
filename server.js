@@ -1,6 +1,10 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
-const routes = require("./scripts/routes/routes");
+
+const mainRoutes = require("./scripts/routes/main.routes");
+const userRoutes = require("./scripts/routes/user.routes");
+const employeeRoutes = require("./scripts/routes/employee.routes");
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
 
@@ -26,7 +30,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //configure routes
-app.use('/', routes);
+app.use('/', mainRoutes);
+app.use('/user', userRoutes);
+app.use('/employee', employeeRoutes);
 
 app.listen(PORT, () => {
     console.log('server is running in port : ', PORT)
