@@ -1,6 +1,5 @@
 module.exports = {
     ifeq: function(a, b){
-        console.log(a, ' e ', b)
         return (a==b)? true: false;
     },
     not: function(role){
