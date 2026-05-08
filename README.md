@@ -1,13 +1,13 @@
 ## Crud Employee
 
 ### Home App for Admin's
-![alt text](image-1.png)
+![alt text](public/imgs/crud-employee-admin-screen.png)
 
 ### Admin's user control view
-![alt text](image-2.png)
+![alt text](public/imgs/crud-employee-admin-view.png)
 
 ### Home App for User's
-![alt text](image-3.png)
+![alt text](public/imgs/crud-employee-user-view.png)
 ***
 > Objective: Create a system that allows the registration, viewing, modification, and deletion of employees stored in a database; in addition, implement the concepts of user registration, cryptography, sessions, authentication, and authorization. 
 
