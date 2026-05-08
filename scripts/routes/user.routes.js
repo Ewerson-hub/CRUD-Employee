@@ -28,7 +28,7 @@ router.post('/create', async (req, res) => {
             res.redirect('/'); 
         }
     } catch (error){
-        console.log('Error on create user => ', error);
+        console.error('Error on create user : ', error);
     } 
 }) 
 router.get('/signUp', (req, res) => {
