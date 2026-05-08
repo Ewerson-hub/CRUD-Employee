@@ -16,12 +16,12 @@ const createUser = async (login, pass) => {
 
             return true;
         }else{
-            console.log('user already existis')
+            console.error('Error, user already existis')
             return false
         }
         
     }catch(error){
-        console.log(error);
+        console.error('Erro in create user : ',error);
         return false
     }   
 }
@@ -38,7 +38,7 @@ const verifyUserAcess = async (login, pass) => {
         return {'verified': verified, 'userData': userData}
         
     } catch (error) {
-        console.log('User not found', error)
+        console.error('Error in verify user acess', error)
         return false
     }
 }
@@ -51,7 +51,7 @@ const getUserData = async(login, passRequired=false) => {
             return await executeQuery("SELECT login FROM users WHERE login = ?", [login])
         }
     }catch(error){
-        console.log(error)
+        console.error('Error in get user data : ', error)
     }
 
 }
@@ -59,7 +59,7 @@ const getAllUsers = async () => {
     try{
         return await executeQuery("SELECT id,login, is_admin FROM users WHERE login != 'root'")
     }catch(error){
-        console.log(error)
+        console.error('Error in get all users : ',error)
     }
 }
 
@@ -68,7 +68,7 @@ const deleteUser = async (id) => {
         await executeQuery("DELETE FROM users WHERE id = ?", [id])
         console.log('User has been deleted !')
     }catch(error){
-        console.log('Error on deleting user ',error)
+        console.error('Error on deleting user : ',error.message)
     }
 }
 const updateRole = async (id, role) => {
@@ -76,7 +76,8 @@ const updateRole = async (id, role) => {
         await executeQuery("UPDATE users SET is_admin = ? WHERE id = ? ", [role, id])
         console.log('User Role has been Updated !')
     }catch(error){
-        console.log('Error on updating user ',error)
+        console.error("Error on updating user : ", error.message)
+        res.render('errorPage')
     }
 }
 
@@ -99,6 +100,7 @@ const verifyUserAuthentication = () => {
             }      
 
         }catch(error){
+            console.error('Error on verify user authentication : ', error.message)
             res.render('errorPage')
         }
 
